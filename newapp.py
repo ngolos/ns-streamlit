@@ -61,7 +61,7 @@ dff=filtered_df[filtered_df.iloc[:,-1]!=""]
 
 
 cat=dff.groupby('Sup_Type').agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).reset_index()
-cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(15).reset_index()
+cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(20).reset_index()
 
 st.markdown(f"**Total Sales of products with {function_choice} - related claims in Mln $$:** {(cat.Sales_Mln.sum()).round(1)}")
 
