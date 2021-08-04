@@ -162,3 +162,20 @@ st.altair_chart(chart, use_container_width=True)
 
 #c = alt.Chart(df).mark_circle().encode(
 #    x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
+
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+st.set_option('deprecation.showPyplotGlobalUse', False)
+ingredient=dff['Product Name']
+text = " ".join(description for description in ingredient)
+
+unwanted = "gummy gummies women one support bottle supplements softgel softgels gel gels tablets powder natural advanced shelf increase stable help capsules capsule pill pills packaging supports made day may vary non-gmo non gmo veg veggie formula promote promotes dietary absorption nature premium powder powerful wellness 1200mg daily whole food standardized helps nutrition nature best better months free pure ultra pack maximum per serving servings 500mg 1000mg month supply organic supplement mg usa count extract gluten vegan vegetarian caps"
+list_unwanted = unwanted.split()
+
+STOPWORDS.update(list_unwanted)
+wc = WordCloud(max_font_size=100,min_font_size=6, min_word_length =3, max_words=400, stopwords=STOPWORDS, random_state=4, relative_scaling=0.8, background_color="white", colormap="inferno").generate(text)
+
+plt.figure(figsize=(15,15))
+plt.imshow(wc, interpolation="bilinear")
+plt.axis("off")
+st.pyplot()
