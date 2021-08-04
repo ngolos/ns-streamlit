@@ -53,7 +53,7 @@ function_choice = st.sidebar.selectbox('Select functionality:', function_type)
 
 
 #Filtered Dataframe based on Functionality
-cols_list = ["Sup_Type","Type", 'Active Ingredient', "Category", "Sales_Mln"]
+cols_list = ["Sup_Type","Type", 'Active Ingredient', "Category", "Product Name", "Sales_Mln"]
 # Add 'functionality' to the list
 cols_list.append(function_choice)
 filtered_df = df[cols_list]
