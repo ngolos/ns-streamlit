@@ -8,6 +8,19 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
+
+padding = 0
+st.markdown(f""" <style>
+    .reportview-container .main .block-container{{
+        padding-top: {padding}rem;
+        padding-right: {padding}rem;
+        padding-left: {padding}rem;
+        padding-bottom: {padding}rem;
+    }} </style> """, unsafe_allow_html=True)
 
 url_csv = "https://raw.githubusercontent.com/ngolos/ns-streamlit/main/june_upd_.csv"
 
@@ -21,7 +34,7 @@ def get_data():
 
 st.title('Nutrastar Dashboard')
 """
-Here is our first rough draft of the dashboard for Supplement Category:
+This is a first rough draft of the dashboard for Supplement Category. Based on June'2020 data:
 """
 df = get_data()
 
@@ -50,7 +63,8 @@ dff=filtered_df[filtered_df.iloc[:,-1]!=""]
 cat=dff.groupby('Sup_Type').agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).reset_index()
 cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(15).reset_index()
 
-st.markdown(f"**Total Sales Mln $$:** {(cat.Sales_Mln.sum()).round(1)}")
+st.markdown(f"**Total Sales of products with {function_choice} - related claims in Mln $$:** {(cat.Sales_Mln.sum()).round(1)}")
+
 
 st.text('Overall Category pie-chart diagram:')
 
