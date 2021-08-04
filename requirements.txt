@@ -5,3 +5,4 @@ streamlit==0.79.0
 pandas==1.2.3
 altair==4.1.0
 numpy==1.20.1
+wordcloud==1.8.1
