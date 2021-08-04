@@ -178,4 +178,4 @@ wc = WordCloud(max_font_size=100,min_font_size=6, min_word_length =3, max_words=
 plt.figure(figsize=(15,15))
 plt.imshow(wc, interpolation="bilinear")
 plt.axis("off")
-st.pyplot()
+st.pyplot(use_container_width=True)
