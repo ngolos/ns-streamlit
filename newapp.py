@@ -169,7 +169,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 ingredient=dff['Product Name']
 text = " ".join(description for description in ingredient)
 
-unwanted = "gummy gummies women one support bottle supplements softgel softgels gel gels tablets powder natural advanced shelf increase stable help capsules capsule pill pills packaging supports made day may vary non-gmo non gmo veg veggie formula promote promotes dietary absorption nature premium powder powerful wellness 1200mg daily whole food standardized helps nutrition nature best better months free pure ultra pack maximum per serving servings 500mg 1000mg month supply organic supplement mg usa count extract gluten vegan vegetarian caps"
+unwanted = "gummy gummies women one support bottle supplements softgel softgels gel gels health healthy tablets powder natural advanced shelf increase stable help capsules capsule pill pills packaging supports made day may vary non-gmo non gmo veg veggie formula promote promotes dietary absorption nature premium powder powerful wellness 1200mg daily whole food standardized helps nutrition nature best better months free pure ultra pack maximum per serving servings 500mg 1000mg month supply organic supplement mg usa count extract gluten vegan vegetarian caps"
 list_unwanted = unwanted.split()
 
 STOPWORDS.update(list_unwanted)
