@@ -34,17 +34,19 @@ def get_data():
 
 st.title('Nutrastar Dashboard')
 """
-This is a first rough draft of the dashboard for Supplement Category. Based on June'2020 data:
+This is supposed to be a multipage framework. Page 1 - Product form - Ingredient based view. 
+Page 2 - function based view. 
+Page 3 - could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category:
 """
 df = get_data()
 
 
 # Filters
 st.sidebar.header('User Input Features')
-#product_choice = []
+product_choice = []
 
-#product_type = df['Sup_Type'].drop_duplicates()
-#product_choice = st.sidebar.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
+product_type = df['Sup_Type'].drop_duplicates()
+product_choice = st.sidebar.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
 
 #category list
 function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
@@ -53,7 +55,7 @@ function_choice = st.sidebar.selectbox('Select functionality:', function_type)
 
 
 #Filtered Dataframe based on Functionality
-cols_list = ["Sup_Type","Type", 'Active Ingredient', "Category", "Product Name", "Sales_Mln"]
+cols_list = ["Sup_Type","Type", 'Active Ingredient', "Group", "Category", "Product Name", "Sales_Mln"]
 # Add 'functionality' to the list
 cols_list.append(function_choice)
 filtered_df = df[cols_list]
@@ -66,7 +68,8 @@ cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_
 st.markdown(f"**Total Sales of products with {function_choice} - related claims in Mln $$:** {(cat.Sales_Mln.sum()).round(1)}")
 
 
-st.text('Overall Category pie-chart diagram:')
+#st.text('Overall Category pie-chart diagram:')
+st.markdown(f"**Overall {function_choice} - related claims category structure:**)
 
 fig = px.pie(cat, values='Sales_Mln', names='Sup_Type', color='Sup_Type', color_discrete_map={'Capsules':'393B79',
                                  'Chewable':'FF7F0E',
