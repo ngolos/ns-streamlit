@@ -45,10 +45,10 @@ df = get_data()
 
 # Filters
 st.sidebar.header('User Input Features')
-product_choice = []
+#product_choice = []
 
-product_type = df['Sup_Type'].drop_duplicates()
-product_choice = st.sidebar.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
+#product_type = df['Sup_Type'].drop_duplicates()
+#product_choice = st.sidebar.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
 
 #category list
 function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
@@ -63,7 +63,13 @@ cols_list.append(function_choice)
 filtered_df = df[cols_list]
 dff=filtered_df[filtered_df.iloc[:,-1]!=""]
 
-st.markdown(f"Overall {product_type} - Sales:")
+product_choice = []
+
+product_type = df['Sup_Type'].drop_duplicates()
+product_choice = st.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
+
+
+st.markdown(f"Overall Sales by Ingredient:")
 #Filter df based on selection
 filterd_type_df = df[df['Sup_Type'].isin(product_choice)]
 #filterd_type_df
