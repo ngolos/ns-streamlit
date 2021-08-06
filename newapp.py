@@ -35,9 +35,10 @@ def get_data():
 st.title('Nutrastar Dashboard')
 """
 This is supposed to be a multipage framework. 
-- Product form - Ingredient based view. 
-- function based view. 
-- could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category.
+- Page 1: Product form - Ingredient based view. 
+- Page 2: function based view. 
+- Page 3: could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category.
+- Currently I use a singe page mode. 
 """
 df = get_data()
 
@@ -62,6 +63,16 @@ cols_list.append(function_choice)
 filtered_df = df[cols_list]
 dff=filtered_df[filtered_df.iloc[:,-1]!=""]
 
+st.markdown(f"Overall {product_type} - Sales:")
+#Filter df based on selection
+filterd_type_df = df[df['Sup_Type'].isin(product_choice)]
+#filterd_type_df
+
+
+fig2 = px.treemap(filterd_type_df, path=['Category', 'Group'],
+                 values='Sales_Mln')
+
+st.plotly_chart(fig2, use_container_width=True)
 
 cat=dff.groupby('Sup_Type').agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).reset_index()
 cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(20).reset_index()
