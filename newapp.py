@@ -34,9 +34,10 @@ def get_data():
 
 st.title('Nutrastar Dashboard')
 """
-This is supposed to be a multipage framework. 1. Product form - Ingredient based view. 
-2. function based view. 
-3. could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category:
+This is supposed to be a multipage framework. 
+- Product form - Ingredient based view. 
+- function based view. 
+- could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category.
 """
 df = get_data()
 
