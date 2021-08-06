@@ -44,15 +44,15 @@ df = get_data()
 
 
 # Filters
-st.sidebar.header('User Input Features')
+#st.sidebar.header('User Input Features')
 #product_choice = []
 
 #product_type = df['Sup_Type'].drop_duplicates()
 #product_choice = st.sidebar.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
 
 #category list
-function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
-function_choice = st.sidebar.selectbox('Select functionality:', function_type)
+#function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
+#function_choice = st.sidebar.selectbox('Select functionality:', function_type)
 
 
 
@@ -65,11 +65,12 @@ dff=filtered_df[filtered_df.iloc[:,-1]!=""]
 
 product_choice = []
 
+st.markdown(f"Overall Sales Split by Product Form & Ingredient:")
 product_type = df['Sup_Type'].drop_duplicates()
 product_choice = st.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
 
 
-st.markdown(f"Overall Sales by Ingredient:")
+
 #Filter df based on selection
 filterd_type_df = df[df['Sup_Type'].isin(product_choice)]
 #filterd_type_df
@@ -84,6 +85,10 @@ cat=dff.groupby('Sup_Type').agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="
 cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(20).reset_index()
 
 st.markdown(f"Total Sales of products with {function_choice} - related claims in Mln $$: **{(cat.Sales_Mln.sum()).round(1)}**")
+
+#category list
+function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
+function_choice = st.selectbox('Select functionality:', function_type)
 
 
 #st.text('Overall Category pie-chart diagram:')
