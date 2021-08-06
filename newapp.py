@@ -84,12 +84,12 @@ st.plotly_chart(fig2, use_container_width=True)
 cat=dff.groupby('Sup_Type').agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).reset_index()
 cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(20).reset_index()
 
-st.markdown(f"Total Sales of products with {function_choice} - related claims in Mln $$: **{(cat.Sales_Mln.sum()).round(1)}**")
+
 
 #category list
 function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
 function_choice = st.selectbox('Select functionality:', function_type)
-
+st.markdown(f"Total Sales of products with {function_choice} - related claims in Mln $$: **{(cat.Sales_Mln.sum()).round(1)}**")
 
 #st.text('Overall Category pie-chart diagram:')
 st.markdown(f"Overall {function_choice} - related claims category structure:")
