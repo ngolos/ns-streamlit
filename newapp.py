@@ -69,7 +69,7 @@ st.markdown(f"**Total Sales of products with {function_choice} - related claims 
 
 
 #st.text('Overall Category pie-chart diagram:')
-st.markdown(f"**Overall {function_choice} - related claims category structure:**)
+st.markdown(f"**Overall {function_choice} - related claims category structure:**")
 
 fig = px.pie(cat, values='Sales_Mln', names='Sup_Type', color='Sup_Type', color_discrete_map={'Capsules':'393B79',
                                  'Chewable':'FF7F0E',
