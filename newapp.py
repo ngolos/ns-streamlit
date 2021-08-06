@@ -54,10 +54,10 @@ df = get_data()
 #function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
 #function_choice = st.sidebar.selectbox('Select functionality:', function_type)
 
-
+st.header('Page 1 - Explore the Largest Ingredient Groups for each Product Form')
 product_choice = []
 
-st.markdown(f"Overall Sales Split by Product Form & Ingredient:")
+st.markdown(f"Sales Split by Product Form & Ingredient:")
 product_type = df['Sup_Type'].drop_duplicates()
 product_choice = st.multiselect('Select product form:', options=sorted(product_type), default='Capsules')
 
@@ -74,7 +74,7 @@ fig2 = px.treemap(filterd_type_df, path=['Category', 'Group'],
 st.plotly_chart(fig2, use_container_width=True)
 
 
-
+st.header('Page 2 - Explore Function Claims')
 
 #category list
 function_type=['Beauty', 'Body', 'Brain', 'Digest', 'Energy', 'Fitness', 'Immune', 'Joints', 'Multi', 'Stress_Sleep','Weight_Mngm' ]
