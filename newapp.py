@@ -34,9 +34,9 @@ def get_data():
 
 st.title('Nutrastar Dashboard')
 """
-This is supposed to be a multipage framework. Page 1 - Product form - Ingredient based view. 
-Page 2 - function based view. 
-Page 3 - could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category:
+This is supposed to be a multipage framework. 1. Product form - Ingredient based view. 
+2. function based view. 
+3. could be google trends, etc. All the data is based on June'2020 Amazon BSL in Dietaty Supplements Category:
 """
 df = get_data()
 
@@ -65,11 +65,11 @@ dff=filtered_df[filtered_df.iloc[:,-1]!=""]
 cat=dff.groupby('Sup_Type').agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).reset_index()
 cat2=dff.groupby(['Sup_Type','Type', "Active Ingredient",'Category']).agg(Sales_Mln=('Sales_Mln', 'sum')).sort_values(by="Sales_Mln", ascending=False).head(20).reset_index()
 
-st.markdown(f"**Total Sales of products with {function_choice} - related claims in Mln $$:** {(cat.Sales_Mln.sum()).round(1)}")
+st.markdown(f"Total Sales of products with {function_choice} - related claims in Mln $$: **{(cat.Sales_Mln.sum()).round(1)}**")
 
 
 #st.text('Overall Category pie-chart diagram:')
-st.markdown(f"**Overall {function_choice} - related claims category structure:**")
+st.markdown(f"Overall {function_choice} - related claims category structure:")
 
 fig = px.pie(cat, values='Sales_Mln', names='Sup_Type', color='Sup_Type', color_discrete_map={'Capsules':'393B79',
                                  'Chewable':'FF7F0E',
