@@ -30,7 +30,7 @@ st.markdown(f""" <style>
         padding-bottom: {padding}rem;
     }} </style> """, unsafe_allow_html=True)
 
-url = 'https://raw.githubusercontent.com/ngolos/nutrastar/main/may_apr.csv' 
+url = 'https://raw.githubusercontent.com/ngolos/ns-streamlit/main/may_apr.csv' 
 
 @st.cache
 def get_data(url):
@@ -42,7 +42,7 @@ def get_data(url):
 
     return df
 
-df1=get_data('https://raw.githubusercontent.com/ngolos/nutrastar/main/may_apr.csv')
+df1=get_data('https://raw.githubusercontent.com/ngolos/ns-streamlit/main/may_apr.csv')
 df_ingr_form=get_data('https://raw.githubusercontent.com/ngolos/nutrastar/main/split_by_ingr_form.csv')
 
 
