@@ -9,7 +9,7 @@ import time
 import requests
 import re
 
-
+pd.set_option("precision", 2)
 st.set_page_config(page_title="Amazon All Forms Report", page_icon="💊", layout="wide")
 alt.renderers.set_embed_options(actions=False)
 #st.markdown("<h1 style='text-align: center; color: red;'>Tablets Report</h1>", unsafe_allow_html=True)
