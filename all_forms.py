@@ -30,7 +30,7 @@ st.markdown(f""" <style>
         padding-bottom: {padding}rem;
     }} </style> """, unsafe_allow_html=True)
 
-url = 'https://raw.githubusercontent.com/ngolos/ns-streamlit/main/may_feb.csv'
+url = 'https://raw.githubusercontent.com/ngolos/nutrastar/main/may_apr.csv' 
 
 @st.cache
 def get_data(url):
@@ -42,8 +42,8 @@ def get_data(url):
 
     return df
 
-df1=get_data('https://raw.githubusercontent.com/ngolos/ns-streamlit/main/may_feb.csv')
-df_ingr_form=get_data('https://raw.githubusercontent.com/ngolos/ns-streamlit/main/split_by_ingr_form.csv')
+df1=get_data('https://raw.githubusercontent.com/ngolos/nutrastar/main/may_apr.csv')
+df_ingr_form=get_data('https://raw.githubusercontent.com/ngolos/nutrastar/main/split_by_ingr_form.csv')
 
 
 st.title('All Delivery Forms Report')
@@ -51,12 +51,12 @@ st.title('All Delivery Forms Report')
 - Part 1: Overall view - Sales by Delivery Form, Top Brands.
 - Part 2: Top Ingredients
 - Part 3: View By Functionality
-- All the data is based on May'21 - January'22 Amazon Best Sellers Rankings in Dietaty Supplements Category. Fluid Forms are excluded (drops, oils, liquids).
+- All the data is based on May'21 - Apr'22 Amazon Best Sellers Rankings in Dietaty Supplements Category. Fluid Forms are excluded (drops, oils, liquids).
 """
 st.write("---")
 # Filters
 #month_list
-month=['feb', 'jan', "dec", 'nov', 'oct', 'sep', 'aug', 'jul', 'jun', 'may']
+month=['apr', 'mar','feb', 'jan', "dec", 'nov', 'oct', 'sep', 'aug', 'jul', 'jun', 'may']
 
 product_forms=["Capsules", 'Gummy', 'Powder', 'Softgels', 'Tablets']
 
@@ -98,13 +98,13 @@ text = chart.mark_text(
 top_15brands=(chart+text)
 cols=['Mo_Revenue_may', 'Mo_Revenue_jun', 'Mo_Revenue_jul', 'Mo_Revenue_aug',
    'Mo_Revenue_sep', 'Mo_Revenue_oct', 'Mo_Revenue_nov', 'Mo_Revenue_dec',
-   'Mo_Revenue_jan', 'Mo_Revenue_feb']
+   'Mo_Revenue_jan', 'Mo_Revenue_feb', 'Mo_Revenue_mar', 'Mo_Revenue_apr']
 source_by_type=df1.groupby('Type')[cols].sum().unstack().reset_index()
 source_by_type.columns=['month', 'Type', 'sales_mln']
 source_by_type.month=source_by_type.month.str.replace('Mo_Revenue_', "")
 source_by_type['sales_mln']=(source_by_type['sales_mln']/1000000).round(1)
 
-months=['may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb']
+months=['may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar', 'apr']
 sales_by_form=alt.Chart(source_by_type[source_by_type['Type']==form_choice]).mark_area(point=True).encode(
     x=alt.X('month', sort=months, title=""),
     y=alt.Y('sales_mln', title='Revenue, mln$'),
