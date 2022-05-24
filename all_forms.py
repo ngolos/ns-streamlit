@@ -43,7 +43,7 @@ def get_data(url):
     return df
 
 df1=get_data('https://raw.githubusercontent.com/ngolos/ns-streamlit/main/may_apr.csv')
-df_ingr_form=get_data('https://raw.githubusercontent.com/ngolos/nutrastar/main/split_by_ingr_form.csv')
+df_ingr_form=get_data('https://raw.githubusercontent.com/ngolos/ns-streamlit/main/split_by_ingr_form.csv')
 
 
 st.title('All Delivery Forms Report')
